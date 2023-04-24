@@ -9,6 +9,16 @@ class AuthK extends K {
   static const forgotPassword = 'Zapomniałeś hasło?';
 }
 
+class HomeScreenK extends K {
+  static const pickUpPlace = 'Miejsce dostawy';
+}
+
+class BottomNavBarK extends K {
+  static const home = "Strona główna";
+  static const shopingCard = "Koszyk";
+  static const account = 'Konto';
+}
+
 class Ui extends K {
   static const double borderRadius20 = 20.0;
 }
