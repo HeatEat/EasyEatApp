@@ -35,19 +35,14 @@ class LoginScreen extends StatelessWidget {
                     width: 200,
                   ),
                   FormBuilderTextField(
-                    name: 'login',
-                    decoration: const InputDecoration(
-                      hintText: 'Login',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(Ui.borderRadius20))),
-                    ),
+                    name: 'e-mail',
+                    decoration: customInputDecoration(hintString: "e-mail"),
                   ),
                   const SizedBox(height: 10),
                   FormBuilderTextField(
                     name: 'password',
                     decoration: const InputDecoration(
-                      hintText: 'Hasło',
+                      hintText: 'hasło',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                               Radius.circular(Ui.borderRadius20))),

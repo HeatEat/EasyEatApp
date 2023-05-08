@@ -102,7 +102,7 @@ class CategoryItem extends StatelessWidget {
       onTap: selectCategory,
       child: Row(
         children: [
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           Card(
             color: Theme.of(context).highlightColor,
             child: Padding(
