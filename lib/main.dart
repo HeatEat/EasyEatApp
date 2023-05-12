@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'bloc_observer.dart';
-import 'blocs/autjentication/authentication_bloc.dart';
+import 'blocs/authentication/authentication_bloc.dart';
 import 'core/constatnts.dart';
 
 void main() async {
@@ -32,7 +32,7 @@ void main() async {
     BlocProvider<AuthenticationBloc>(
       create: (_) => AuthenticationBloc(),
     ),
-  ], child: MyApp()));
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
