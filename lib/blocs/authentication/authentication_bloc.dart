@@ -34,5 +34,15 @@ class AuthenticationBloc
         emit(AuthErrorState(e.toString()));
       }
     });
+
+    on<SignOutEvent>((event, emit) async {
+      emit(AuthLoadingState());
+      try {
+        await _authservice.signOut();
+        emit(UnAuthenticatedState());
+      } catch (e) {
+        emit(AuthErrorState(e.toString()));
+      }
+    });
   }
 }

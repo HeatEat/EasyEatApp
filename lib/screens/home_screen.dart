@@ -1,87 +1,108 @@
 import 'package:easy_eat/core/constatnts.dart';
 import 'package:easy_eat/screens/widgets/select_pickup_place_widget.dart';
+import 'package:easy_eat/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
+import '../blocs/authentication/authentication_bloc.dart';
+import '../core/app_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(25, 8, 25, 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SelectPickUpPlace(),
-                  TextButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(Icons.search_rounded),
-                      label: const Text("")),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
-              child: SizedBox(
-                height: 50,
-                width: double.infinity,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
+    return BlocListener<AuthenticationBloc, AuthenticationState>(
+      listener: (context, state) {
+        if (state is AuthSuccessState) {
+          GoRouter.of(context).go(AppRoute.homescreen);
+        } else if (state is UnAuthenticatedState) {
+          GoRouter.of(context).go(AppRoute.loginscreen);
+        } else if (state is AuthErrorState) {
+          context.showsnackbar(title: 'Something Went Wrong!');
+        }
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 8, 25, 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CategoryItem(
-                      categoryName: "Wszystkie",
-                      selectCategory: () {},
-                    ),
-                    CategoryItem(
-                      categoryName: "Burger",
-                      selectCategory: () {},
-                    ),
-                    CategoryItem(
-                      categoryName: "Pizza",
-                      selectCategory: () {},
-                    ),
-                    CategoryItem(
-                      categoryName: "Włoska",
-                      selectCategory: () {},
-                    ),
-                    CategoryItem(
-                      categoryName: "Hinduska",
-                      selectCategory: () {},
-                    ),
-                    CategoryItem(
-                      categoryName: "Turecka",
-                      selectCategory: () {},
-                    ),
-                    CategoryItem(
-                      categoryName: "Kebab",
-                      selectCategory: () {},
-                    ),
+                    const SelectPickUpPlace(),
+                    TextButton.icon(
+                        onPressed: () {},
+                        icon: const Icon(Icons.search_rounded),
+                        label: const Text("")),
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+                child: SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      CategoryItem(
+                        categoryName: "Wszystkie",
+                        selectCategory: () {},
+                      ),
+                      CategoryItem(
+                        categoryName: "Burger",
+                        selectCategory: () {},
+                      ),
+                      CategoryItem(
+                        categoryName: "Pizza",
+                        selectCategory: () {},
+                      ),
+                      CategoryItem(
+                        categoryName: "Włoska",
+                        selectCategory: () {},
+                      ),
+                      CategoryItem(
+                        categoryName: "Hinduska",
+                        selectCategory: () {},
+                      ),
+                      CategoryItem(
+                        categoryName: "Turecka",
+                        selectCategory: () {},
+                      ),
+                      CategoryItem(
+                        categoryName: "Kebab",
+                        selectCategory: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_rounded),
+              label: BottomNavBarK.home,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart_rounded),
+              label: BottomNavBarK.shopingCard,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_2_rounded),
+              label: BottomNavBarK.account,
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
-            label: BottomNavBarK.home,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_rounded),
-            label: BottomNavBarK.shopingCard,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_rounded),
-            label: BottomNavBarK.account,
-          ),
-        ],
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          BlocProvider.of<AuthenticationBloc>(context)
+              .add(const SignOutEvent());
+        }),
       ),
     );
   }

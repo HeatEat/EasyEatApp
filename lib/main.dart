@@ -1,13 +1,11 @@
 import 'package:easy_eat/core/themes/app_theme.dart';
-import 'package:easy_eat/screens/home_screen.dart';
-import 'package:easy_eat/screens/login_screen.dart';
-import 'package:easy_eat/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'bloc_observer.dart';
 import 'blocs/authentication/authentication_bloc.dart';
+import 'core/app_router.dart';
 import 'core/constatnts.dart';
 
 void main() async {
@@ -39,12 +37,14 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: K.title,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
-      home: RegisterScreen(),
+      routeInformationProvider: AppRoute.router.routeInformationProvider,
+      routeInformationParser: AppRoute.router.routeInformationParser,
+      routerDelegate: AppRoute.router.routerDelegate,
     );
   }
 }
