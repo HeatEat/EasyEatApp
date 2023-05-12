@@ -6,3 +6,29 @@ abstract class AuthenticationEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class EmailSignInAuthEvent extends AuthenticationEvent {
+  final String email, password;
+
+  const EmailSignInAuthEvent(this.email, this.password);
+
+  @override
+  List<Object> get props => [email, password];
+}
+
+class EmailSignUpAuthEvent extends AuthenticationEvent {
+  final String email, password;
+
+  const EmailSignUpAuthEvent(this.email, this.password);
+
+  @override
+  List<Object> get props => [email, password];
+}
+
+class AnounymousAuthEvent extends AuthenticationEvent {
+  const AnounymousAuthEvent();
+}
+
+class SignOutEvent extends AuthenticationEvent {
+  const SignOutEvent();
+}
