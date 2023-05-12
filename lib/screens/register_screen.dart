@@ -2,6 +2,9 @@ import 'package:easy_eat/core/constatnts.dart';
 import 'package:easy_eat/screens/widgets/text_button_with_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:go_router/go_router.dart';
+
+import '../core/app_router.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
@@ -73,7 +76,9 @@ class RegisterScreen extends StatelessWidget {
                   SizedBox(height: screenHight * 0.005),
                   TextButtonWithInfo(
                       infoString: AuthK.haveAccount,
-                      textButtonCallback: () {},
+                      textButtonCallback: () {
+                        GoRouter.of(context).go(AppRoute.loginscreen);
+                      },
                       textButtonChild: AuthK.loginString),
                 ],
               ),

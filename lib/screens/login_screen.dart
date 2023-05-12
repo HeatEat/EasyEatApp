@@ -85,7 +85,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                     TextButtonWithInfo(
                         infoString: AuthK.noAccount,
-                        textButtonCallback: () {},
+                        textButtonCallback: () {
+                          GoRouter.of(context).go(AppRoute.registerscreen);
+                        },
                         textButtonChild: AuthK.register),
                     TextButtonWithInfo(
                       infoString: AuthK.forgotPassword,
