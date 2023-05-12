@@ -22,3 +22,9 @@ class AuthErrorState extends AuthenticationState {
 class UnAuthenticatedState extends AuthenticationState {
   const UnAuthenticatedState();
 }
+
+class AuthAccountExistState extends AuthenticationState {}
+
+class AuthVerifiState extends AuthenticationState {}
+
+class AuthVerifiSuccessState extends AuthenticationState {}

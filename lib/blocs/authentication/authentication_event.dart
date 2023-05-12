@@ -32,3 +32,8 @@ class AnounymousAuthEvent extends AuthenticationEvent {
 class SignOutEvent extends AuthenticationEvent {
   const SignOutEvent();
 }
+
+class VerificationAuthEvent extends AuthenticationEvent {
+  final String email, password;
+  const VerificationAuthEvent(this.email, this.password);
+}

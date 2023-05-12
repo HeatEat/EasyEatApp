@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import '../../utils/services/auth_service.dart';
 
@@ -27,9 +28,15 @@ class AuthenticationBloc
       emit(AuthLoadingState());
 
       try {
-        await _authservice.signUpWithEmail(
+        final accountState = await _authservice.signUpWithEmail(
             email: event.email, password: event.password);
-        emit(AuthSuccessState());
+
+        print(accountState);
+        if (accountState == AccountState.createdNotVerify) {
+          emit(AuthVerifiState());
+        } else if (accountState == AccountState.createdVerify) {
+          emit(AuthAccountExistState());
+        }
       } catch (e) {
         emit(AuthErrorState(e.toString()));
       }
@@ -39,10 +46,16 @@ class AuthenticationBloc
       emit(AuthLoadingState());
       try {
         await _authservice.signOut();
-        emit(UnAuthenticatedState());
+        emit(const UnAuthenticatedState());
       } catch (e) {
         emit(AuthErrorState(e.toString()));
       }
     });
+
+    on<VerificationAuthEvent>(
+      (event, emit) {
+        emit(AuthVerifiState());
+      },
+    );
   }
 }

@@ -76,7 +76,7 @@ class LoginScreen extends StatelessWidget {
                             onPressed: () {
                               BlocProvider.of<AuthenticationBloc>(context).add(
                                   const EmailSignInAuthEvent(
-                                      "test@test.com", "123456"));
+                                      "ryszard.schossler@gmail.com", "123456"));
                             },
                             child: const Text('Zaloguj'),
                           );

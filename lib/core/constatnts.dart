@@ -32,6 +32,19 @@ class BottomNavBarK extends K {
   static const account = 'Konto';
 }
 
+class VerificationScreenK extends K {
+  static const verificationCodeString = 'Kod weryfikacyjny';
+  static const verificationMessage =
+      'Wysłaliśmy 6 cyfrowy kod weryfikacyjny na podany adres email';
+
+  static const firstDigitInput = 'firstDigit';
+  static const secondDigitInput = 'secondDigit';
+  static const thirdDigitInput = 'thirdDigit';
+  static const fourthDigitInput = 'fourthDigit';
+  static const fifthDigitInput = 'fifthDigit';
+  static const sixthDigitInput = 'sixthDigit';
+}
+
 class Ui extends K {
   static const double borderRadius20 = 20.0;
 }
