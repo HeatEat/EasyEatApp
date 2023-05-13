@@ -1,8 +1,6 @@
 import 'package:easy_eat/core/constatnts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class VerificationScreen extends StatefulWidget {
@@ -13,7 +11,6 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
-  final secondDigitController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormBuilderState>();
@@ -40,91 +37,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
             ),
             SizedBox(height: screenHight * 0.02),
             FormBuilder(
+              key: formKey,
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        height: codeBoxHeight,
-                        width: codeBoxWidth,
-                        child: FormBuilderTextField(
-                          onChanged: (value) {
-                            if (value!.length == 1) {
-                              FocusScope.of(context).nextFocus();
-                            }
-                          },
-                          name: VerificationScreenK.secondDigitInput,
-                          decoration: customInputDecoration(hintString: ''),
-                          style: Theme.of(context).textTheme.headlineSmall,
-                          keyboardType: TextInputType.number,
-                          textAlign: TextAlign.center,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: codeBoxHeight,
-                        width: codeBoxWidth,
-                        child: FormBuilderTextField(
-                          onChanged: (value) {
-                            if (value!.length == 1) {
-                              FocusScope.of(context).nextFocus();
-                            }
-                          },
-                          name: VerificationScreenK.thirdDigitInput,
-                          decoration: customInputDecoration(hintString: ''),
-                          style: Theme.of(context).textTheme.headlineSmall,
-                          keyboardType: TextInputType.number,
-                          textAlign: TextAlign.center,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: codeBoxHeight,
-                        width: codeBoxWidth,
-                        child: FormBuilderTextField(
-                          onChanged: (value) {
-                            if (value!.length == 1) {
-                              FocusScope.of(context).nextFocus();
-                            }
-                          },
-                          name: VerificationScreenK.fourthDigitInput,
-                          decoration: customInputDecoration(hintString: ''),
-                          style: Theme.of(context).textTheme.headlineSmall,
-                          keyboardType: TextInputType.number,
-                          textAlign: TextAlign.center,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: codeBoxHeight,
-                        width: codeBoxWidth,
-                        child: FormBuilderTextField(
-                          onChanged: (value) {
-                            if (value!.length == 1) {
-                              FocusScope.of(context).nextFocus();
-                            }
-                          },
-                          name: VerificationScreenK.fifthDigitInput,
-                          decoration: customInputDecoration(hintString: ''),
-                          style: Theme.of(context).textTheme.headlineSmall,
-                          keyboardType: TextInputType.number,
-                          textAlign: TextAlign.center,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
                       SizedBox(
                         height: codeBoxHeight,
                         width: codeBoxWidth,
@@ -150,7 +68,104 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         width: codeBoxWidth,
                         child: FormBuilderTextField(
                           onChanged: (value) {
-                            if (value!.length == 1) {}
+                            if (value!.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                            if (value.isEmpty) {
+                              FocusScope.of(context).previousFocus();
+                            }
+                          },
+                          name: VerificationScreenK.secondDigitInput,
+                          decoration: customInputDecoration(hintString: ''),
+                          style: Theme.of(context).textTheme.headlineSmall,
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: codeBoxHeight,
+                        width: codeBoxWidth,
+                        child: FormBuilderTextField(
+                          onChanged: (value) {
+                            if (value!.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                            if (value.isEmpty) {
+                              FocusScope.of(context).previousFocus();
+                            }
+                          },
+                          name: VerificationScreenK.thirdDigitInput,
+                          decoration: customInputDecoration(hintString: ''),
+                          style: Theme.of(context).textTheme.headlineSmall,
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: codeBoxHeight,
+                        width: codeBoxWidth,
+                        child: FormBuilderTextField(
+                          onChanged: (value) {
+                            if (value!.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                            if (value.isEmpty) {
+                              FocusScope.of(context).previousFocus();
+                            }
+                          },
+                          name: VerificationScreenK.fourthDigitInput,
+                          decoration: customInputDecoration(hintString: ''),
+                          style: Theme.of(context).textTheme.headlineSmall,
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: codeBoxHeight,
+                        width: codeBoxWidth,
+                        child: FormBuilderTextField(
+                          onChanged: (value) {
+                            if (value!.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                            if (value.isEmpty) {
+                              FocusScope.of(context).previousFocus();
+                            }
+                          },
+                          name: VerificationScreenK.fifthDigitInput,
+                          decoration: customInputDecoration(hintString: ''),
+                          style: Theme.of(context).textTheme.headlineSmall,
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: codeBoxHeight,
+                        width: codeBoxWidth,
+                        child: FormBuilderTextField(
+                          onChanged: (value) {
+                            if (value!.length == 1) {
+                              print("Ended verify");
+                            }
+                            if (value.isEmpty) {
+                              FocusScope.of(context).previousFocus();
+                            }
                           },
                           name: VerificationScreenK.sixthDigitInput,
                           decoration: customInputDecoration(hintString: ''),
