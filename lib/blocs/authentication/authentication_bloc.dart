@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 import '../../utils/services/auth_service.dart';
 
@@ -30,8 +29,6 @@ class AuthenticationBloc
       try {
         final accountState = await _authservice.signUpWithEmail(
             email: event.email, password: event.password);
-
-        print(accountState);
         if (accountState == AccountState.createdNotVerify) {
           emit(AuthVerifiState());
         } else if (accountState == AccountState.createdVerify) {

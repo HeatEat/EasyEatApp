@@ -2,6 +2,7 @@ import 'package:easy_eat/core/constatnts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({super.key});
@@ -61,6 +62,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             LengthLimitingTextInputFormatter(1),
                             FilteringTextInputFormatter.digitsOnly
                           ],
+                          validator: FormBuilderValidators.required(),
                         ),
                       ),
                       SizedBox(
@@ -84,6 +86,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             LengthLimitingTextInputFormatter(1),
                             FilteringTextInputFormatter.digitsOnly
                           ],
+                          validator: FormBuilderValidators.required(),
                         ),
                       ),
                       SizedBox(
@@ -107,6 +110,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             LengthLimitingTextInputFormatter(1),
                             FilteringTextInputFormatter.digitsOnly
                           ],
+                          validator: FormBuilderValidators.required(),
                         ),
                       ),
                       SizedBox(
@@ -130,6 +134,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             LengthLimitingTextInputFormatter(1),
                             FilteringTextInputFormatter.digitsOnly
                           ],
+                          validator: FormBuilderValidators.required(),
                         ),
                       ),
                       SizedBox(
@@ -153,6 +158,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             LengthLimitingTextInputFormatter(1),
                             FilteringTextInputFormatter.digitsOnly
                           ],
+                          validator: FormBuilderValidators.required(),
                         ),
                       ),
                       SizedBox(
@@ -161,7 +167,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         child: FormBuilderTextField(
                           onChanged: (value) {
                             if (value!.length == 1) {
-                              print("Ended verify");
+                              if (formKey.currentState!.validate()) {
+                                String otpCode = '';
+                                for (var digit
+                                    in VerificationScreenK.otpInputs) {
+                                  otpCode += formKey
+                                      .currentState?.fields[digit]?.value;
+                                }
+                              } else {
+                                print("Ended verify not validate");
+                              }
                             }
                             if (value.isEmpty) {
                               FocusScope.of(context).previousFocus();
@@ -176,12 +191,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             LengthLimitingTextInputFormatter(1),
                             FilteringTextInputFormatter.digitsOnly
                           ],
+                          validator: FormBuilderValidators.required(),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: screenHight * 0.02),
-                  ElevatedButton(onPressed: () {}, child: Text("Weryfikuj"))
+                  // ElevatedButton(onPressed: () {}, child: Text("Weryfikuj"))
                 ],
               ),
             ),

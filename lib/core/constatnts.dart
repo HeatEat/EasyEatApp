@@ -43,6 +43,15 @@ class VerificationScreenK extends K {
   static const fourthDigitInput = 'fourthDigit';
   static const fifthDigitInput = 'fifthDigit';
   static const sixthDigitInput = 'sixthDigit';
+
+  static const otpInputs = [
+    'firstDigit',
+    'secondDigit',
+    'thirdDigit',
+    'fourthDigit',
+    'fifthDigit',
+    'sixthDigit'
+  ];
 }
 
 class Ui extends K {
