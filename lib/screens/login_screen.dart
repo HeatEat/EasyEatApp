@@ -15,6 +15,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormBuilderState>();
+    late String email;
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is AuthSuccessState) {
@@ -23,6 +24,11 @@ class LoginScreen extends StatelessWidget {
           GoRouter.of(context).go(AppRoute.loginscreen);
         } else if (state is AuthErrorState) {
           context.showsnackbar(title: 'Something Went Wrong!');
+        } else if (state is AuthEmailNotConfirmedState) {
+          context.showsnackbar(
+              title: 'Email nie potwierdzony', color: Colors.yellow.shade200);
+          // TODO: wywołanie sign-up i wyświetlenie ekranu otpVerification
+          // dodanie nowego evantu dla nowego ekranu weryfikacyjengo OTP.
         }
       },
       child: Scaffold(
@@ -72,9 +78,10 @@ class LoginScreen extends StatelessWidget {
                         } else {
                           return ElevatedButton(
                             onPressed: () {
+                              email = "rysiek9801@gmail.com";
                               BlocProvider.of<AuthenticationBloc>(context).add(
                                   const EmailSignInAuthEvent(
-                                      "ryszard.schossler@gmail.com", "123456"));
+                                      "rysiek9801@gmail.com", "123456"));
                             },
                             child: const Text('Zaloguj'),
                           );

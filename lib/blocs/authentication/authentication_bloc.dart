@@ -14,10 +14,14 @@ class AuthenticationBloc
     on<EmailSignInAuthEvent>((event, emit) async {
       emit(AuthLoadingState());
       try {
-        await _authservice.signInWithEmail(
+        final response = await _authservice.signInWithEmail(
             email: event.email, password: event.password);
 
-        emit(AuthSuccessState());
+        if (response == SignInState.success) {
+          emit(AuthSuccessState());
+        } else if (response == SignInState.emailNotConfirmed) {
+          emit(AuthEmailNotConfirmedState());
+        }
       } catch (e) {
         emit(AuthErrorState(e.toString()));
       }
@@ -35,6 +39,7 @@ class AuthenticationBloc
           emit(AuthAccountExistState());
         }
       } catch (e) {
+        print(e.toString());
         emit(AuthErrorState(e.toString()));
       }
     });
@@ -61,6 +66,7 @@ class AuthenticationBloc
 
         emit(AuthVerifiSuccessState());
       } catch (e) {
+        print(e.toString());
         emit(AuthVerifiErrorState());
       }
 

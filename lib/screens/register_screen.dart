@@ -1,5 +1,6 @@
 import 'package:easy_eat/core/constatnts.dart';
 import 'package:easy_eat/screens/widgets/text_button_with_info_widget.dart';
+import 'package:easy_eat/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -8,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import '../blocs/authentication/authentication_bloc.dart';
 import '../core/app_router.dart';
 
+// ignore: must_be_immutable
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
 
@@ -22,6 +24,9 @@ class RegisterScreen extends StatelessWidget {
         if (state is AuthVerifiState) {
           GoRouter.of(context).push(AppRoute.verificationscreen, extra: email);
         } else if (state is AuthAccountExistState) {
+          context.showsnackbar(
+              title: 'Konto o takim emailu istnieje, zaloguj sie',
+              color: Colors.green.shade200);
           GoRouter.of(context).go(AppRoute.loginscreen);
         }
       },
@@ -82,10 +87,10 @@ class RegisterScreen extends StatelessWidget {
                     SizedBox(height: screenHight * 0.02),
                     ElevatedButton(
                       onPressed: () {
-                        email = 'ryszard.schossler@gmail.com';
+                        email = 'rysiek9801@gmail.com';
                         BlocProvider.of<AuthenticationBloc>(context).add(
                             const EmailSignUpAuthEvent(
-                                "ryszard.schossler@gmail.com", "123456"));
+                                "rysiek9801@gmail.com", "123456"));
                       },
                       child: const Text("Stwórz konto!"),
                     ),
