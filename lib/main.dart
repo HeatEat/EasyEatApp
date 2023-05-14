@@ -1,6 +1,7 @@
 import 'package:easy_eat/core/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'bloc_observer.dart';
@@ -45,6 +46,15 @@ class MyApp extends StatelessWidget {
       routeInformationProvider: AppRoute.router.routeInformationProvider,
       routeInformationParser: AppRoute.router.routeInformationParser,
       routerDelegate: AppRoute.router.routerDelegate,
+      supportedLocales: const [
+        Locale('pl'),
+        Locale('en'),
+      ],
+      localizationsDelegates: const [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
     );
   }
 }

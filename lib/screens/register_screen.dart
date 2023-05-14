@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:easy_eat/core/constatnts.dart';
 import 'package:easy_eat/screens/widgets/text_button_with_info_widget.dart';
 import 'package:easy_eat/utils/extensions/extensions.dart';
@@ -15,10 +16,12 @@ class RegisterScreen extends StatelessWidget {
 
   final formKey = GlobalKey<FormBuilderState>();
   late String email;
+
   @override
   Widget build(BuildContext context) {
     final screenHight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
+
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is AuthVerifiState) {
@@ -33,78 +36,111 @@ class RegisterScreen extends StatelessWidget {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: screenHight * 0.1),
-              const Text(
-                AuthK.createAccount,
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                  fontSize: 24,
-                  fontStyle: FontStyle.italic,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: screenHight * 0.1),
+                const Text(
+                  AuthK.createAccount,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 24,
+                    fontStyle: FontStyle.italic,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: screenHight * 0.02),
-              FormBuilder(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: screenWidth * 0.45,
-                          child: FormBuilderTextField(
-                            name: AuthK.nameString,
-                            decoration: customInputDecoration(
-                                hintString: AuthK.nameStringHintText),
+                SizedBox(height: screenHight * 0.02),
+                FormBuilder(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: screenWidth * 0.45,
+                            child: FormBuilderTextField(
+                              textCapitalization: TextCapitalization.words,
+                              name: AuthK.nameString,
+                              decoration: customInputDecoration(
+                                  hintString: AuthK.nameStringHintText),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: screenWidth * 0.45,
-                          child: FormBuilderTextField(
-                            name: AuthK.lastNameString,
-                            decoration: customInputDecoration(
-                                hintString: AuthK.lastNameHintText),
+                          SizedBox(
+                            width: screenWidth * 0.45,
+                            child: FormBuilderTextField(
+                              textCapitalization: TextCapitalization.words,
+                              name: AuthK.lastNameString,
+                              decoration: customInputDecoration(
+                                  hintString: AuthK.lastNameHintText),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: screenHight * 0.02),
-                    FormBuilderTextField(
-                      name: AuthK.emailString,
-                      decoration:
-                          customInputDecoration(hintString: AuthK.emailString),
-                    ),
-                    SizedBox(height: screenHight * 0.02),
-                    FormBuilderTextField(
-                      name: AuthK.passwordString,
-                      decoration: customInputDecoration(
-                          hintString: AuthK.passwordHintText),
-                    ),
-                    SizedBox(height: screenHight * 0.02),
-                    ElevatedButton(
-                      onPressed: () {
-                        email = 'rysiek9801@gmail.com';
-                        BlocProvider.of<AuthenticationBloc>(context).add(
-                            const EmailSignUpAuthEvent(
-                                "rysiek9801@gmail.com", "123456"));
-                      },
-                      child: const Text("Stwórz konto!"),
-                    ),
-                    SizedBox(height: screenHight * 0.005),
-                    TextButtonWithInfo(
-                        infoString: AuthK.haveAccount,
-                        textButtonCallback: () {
-                          GoRouter.of(context).go(AppRoute.loginscreen);
+                        ],
+                      ),
+                      SizedBox(height: screenHight * 0.02),
+                      FormBuilderTextField(
+                        name: AuthK.emailString,
+                        decoration: customInputDecoration(
+                            hintString: AuthK.emailString),
+                      ),
+                      SizedBox(height: screenHight * 0.02),
+                      FormBuilderTextField(
+                        name: AuthK.passwordString,
+                        decoration: customInputDecoration(
+                            hintString: AuthK.passwordHintText),
+                      ),
+                      SizedBox(height: screenHight * 0.02),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: CountryCodePicker(
+                              showDropDownButton: true,
+                              initialSelection: 'PL',
+                              favorite: const ['EN', 'PL'],
+                              dialogBackgroundColor:
+                                  Theme.of(context).colorScheme.background,
+                              barrierColor:
+                                  Theme.of(context).colorScheme.background,
+                              textStyle: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: FormBuilderTextField(
+                              name: AuthK.phoneNumberString,
+                              decoration: customInputDecoration(
+                                  hintString: AuthK.phoneNumberHintText),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: screenHight * 0.02),
+                      ElevatedButton(
+                        onPressed: () {
+                          email = 'rysiek9801@gmail.com';
+                          BlocProvider.of<AuthenticationBloc>(context).add(
+                              const EmailSignUpAuthEvent(
+                                  "rysiek9801@gmail.com", "123456"));
                         },
-                        textButtonChild: AuthK.loginString),
-                  ],
+                        child: const Text("Stwórz konto!"),
+                      ),
+                      SizedBox(height: screenHight * 0.005),
+                      TextButtonWithInfo(
+                          infoString: AuthK.haveAccount,
+                          textButtonCallback: () {
+                            GoRouter.of(context).go(AppRoute.loginscreen);
+                          },
+                          textButtonChild: AuthK.loginString),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

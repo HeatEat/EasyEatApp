@@ -20,6 +20,8 @@ class AuthK extends K {
   static const nameStringHintText = 'imię';
   static const lastNameString = 'lastName';
   static const lastNameHintText = 'nazwisko';
+  static const phoneNumberString = 'phone';
+  static const phoneNumberHintText = 'numer telefonu';
 }
 
 class HomeScreenK extends K {

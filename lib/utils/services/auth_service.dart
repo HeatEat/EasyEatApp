@@ -24,7 +24,6 @@ class AuthService {
       }
       return SignInState.otherError;
     } catch (e) {
-      print(e.toString());
       throw e.toString();
     }
   }
