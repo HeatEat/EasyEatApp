@@ -37,3 +37,9 @@ class VerificationAuthEvent extends AuthenticationEvent {
   final String email, password;
   const VerificationAuthEvent(this.email, this.password);
 }
+
+class VerifiAccountEvent extends AuthenticationEvent {
+  final String token;
+  final String email;
+  const VerifiAccountEvent(this.token, this.email);
+}

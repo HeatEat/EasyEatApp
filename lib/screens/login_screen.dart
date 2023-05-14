@@ -15,8 +15,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormBuilderState>();
-    AuthenticationBloc blocProvider =
-        BlocProvider.of<AuthenticationBloc>(context);
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is AuthSuccessState) {

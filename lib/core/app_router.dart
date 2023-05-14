@@ -40,7 +40,12 @@ class AppRoute {
       ),
       GoRoute(
         path: verificationscreen,
-        builder: (context, state) => const VerificationScreen(),
+        builder: (context, state) {
+          String email = state.extra as String;
+          return VerificationScreen(
+            email: email,
+          );
+        },
       ),
     ],
     initialLocation: root,

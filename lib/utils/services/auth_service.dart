@@ -27,14 +27,13 @@ class AuthService {
           await _auth.signUp(email: email, password: password, data: {
         'first_name': 'John',
       });
+      // ignore: unrelated_type_equality_checks
       if (response.session == Null) {
         debugPrint("session is null");
       }
       if (response.user!.identities!.isEmpty) {
-        debugPrint("Konto stworzone i potwierdzony email");
         return AccountState.createdVerify;
       } else {
-        debugPrint("Konto stworzone leczn nie potwierdzony email");
         return AccountState.createdNotVerify;
       }
     } catch (e) {
@@ -62,6 +61,14 @@ class AuthService {
   Future<void> signOut() async {
     try {
       await _auth.signOut();
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<void> otpVerify({required String email, required String token}) async {
+    try {
+      await _auth.verifyOTP(token: token, type: OtpType.signup, email: email);
     } catch (e) {
       throw e.toString();
     }

@@ -28,3 +28,5 @@ class AuthAccountExistState extends AuthenticationState {}
 class AuthVerifiState extends AuthenticationState {}
 
 class AuthVerifiSuccessState extends AuthenticationState {}
+
+class AuthVerifiErrorState extends AuthenticationState {}

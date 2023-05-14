@@ -54,5 +54,17 @@ class AuthenticationBloc
         emit(AuthVerifiState());
       },
     );
+
+    on<VerifiAccountEvent>((event, emit) async {
+      try {
+        await _authservice.otpVerify(email: event.email, token: event.token);
+
+        emit(AuthVerifiSuccessState());
+      } catch (e) {
+        emit(AuthVerifiErrorState());
+      }
+
+      // emit(AuthVerifiSuccessState());
+    });
   }
 }

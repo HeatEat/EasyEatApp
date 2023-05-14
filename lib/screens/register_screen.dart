@@ -12,6 +12,7 @@ class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
 
   final formKey = GlobalKey<FormBuilderState>();
+  late String email;
   @override
   Widget build(BuildContext context) {
     final screenHight = MediaQuery.of(context).size.height;
@@ -19,7 +20,7 @@ class RegisterScreen extends StatelessWidget {
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is AuthVerifiState) {
-          GoRouter.of(context).go(AppRoute.verificationscreen);
+          GoRouter.of(context).push(AppRoute.verificationscreen, extra: email);
         } else if (state is AuthAccountExistState) {
           GoRouter.of(context).go(AppRoute.loginscreen);
         }
@@ -81,6 +82,7 @@ class RegisterScreen extends StatelessWidget {
                     SizedBox(height: screenHight * 0.02),
                     ElevatedButton(
                       onPressed: () {
+                        email = 'ryszard.schossler@gmail.com';
                         BlocProvider.of<AuthenticationBloc>(context).add(
                             const EmailSignUpAuthEvent(
                                 "ryszard.schossler@gmail.com", "123456"));
