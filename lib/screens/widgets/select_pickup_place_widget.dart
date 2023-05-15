@@ -1,5 +1,5 @@
-import 'package:easy_eat/core/constatnts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SelectPickUpPlace extends StatelessWidget {
   const SelectPickUpPlace({
@@ -12,9 +12,9 @@ class SelectPickUpPlace extends StatelessWidget {
       onTap: () {},
       child: Column(
         children: [
-          const Text(
-            HomeScreenK.pickUpPlace,
-            style: TextStyle(fontWeight: FontWeight.w100, fontSize: 12),
+          Text(
+            AppLocalizations.of(context).pickUpPlace,
+            style: const TextStyle(fontWeight: FontWeight.w100, fontSize: 12),
           ),
           Row(
             children: [

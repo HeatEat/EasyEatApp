@@ -1,4 +1,3 @@
-import 'package:easy_eat/core/constatnts.dart';
 import 'package:easy_eat/screens/widgets/select_pickup_place_widget.dart';
 import 'package:easy_eat/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../blocs/authentication/authentication_bloc.dart';
 import '../core/app_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,7 +20,8 @@ class HomeScreen extends StatelessWidget {
         } else if (state is UnAuthenticatedState) {
           GoRouter.of(context).go(AppRoute.loginscreen);
         } else if (state is AuthErrorState) {
-          context.showsnackbar(title: 'Something Went Wrong!');
+          context.showsnackbar(
+              title: AppLocalizations.of(context).somethingWentWrong);
         }
       },
       child: Scaffold(
@@ -84,18 +85,18 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded),
-              label: BottomNavBarK.home,
+              icon: const Icon(Icons.home_rounded),
+              label: AppLocalizations.of(context).home,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_rounded),
-              label: BottomNavBarK.shopingCard,
+              icon: const Icon(Icons.shopping_cart_rounded),
+              label: AppLocalizations.of(context).shoppingCard,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_2_rounded),
-              label: BottomNavBarK.account,
+              icon: const Icon(Icons.person_2_rounded),
+              label: AppLocalizations.of(context).account,
             ),
           ],
         ),

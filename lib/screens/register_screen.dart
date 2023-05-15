@@ -31,7 +31,7 @@ class RegisterScreen extends StatelessWidget {
           GoRouter.of(context).push(AppRoute.verificationscreen, extra: email);
         } else if (state is AuthAccountExistState) {
           context.showsnackbar(
-              title: 'Konto o takim emailu istnieje, zaloguj sie',
+              title: AppLocalizations.of(context).accountExist,
               color: Colors.green.shade200);
           GoRouter.of(context).go(AppRoute.loginscreen);
         }
@@ -45,9 +45,9 @@ class RegisterScreen extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: screenHight * 0.1),
-                const Text(
-                  AuthK.createAccount,
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context).createAccount,
+                  style: const TextStyle(
                     fontWeight: FontWeight.w900,
                     fontSize: 24,
                     fontStyle: FontStyle.italic,
@@ -68,7 +68,8 @@ class RegisterScreen extends StatelessWidget {
                               textCapitalization: TextCapitalization.words,
                               name: AuthK.nameString,
                               decoration: customInputDecoration(
-                                  hintString: AuthK.nameStringHintText),
+                                  hintString:
+                                      AppLocalizations.of(context).name),
                               validator: FormBuilderValidators.compose([
                                 FormBuilderValidators.required(),
                               ]),
@@ -82,7 +83,8 @@ class RegisterScreen extends StatelessWidget {
                               textCapitalization: TextCapitalization.words,
                               name: AuthK.lastNameString,
                               decoration: customInputDecoration(
-                                  hintString: AuthK.lastNameHintText),
+                                  hintString:
+                                      AppLocalizations.of(context).lastName),
                               validator: FormBuilderValidators.compose([
                                 FormBuilderValidators.required(),
                               ]),
@@ -96,7 +98,7 @@ class RegisterScreen extends StatelessWidget {
                       FormBuilderTextField(
                         name: AuthK.emailString,
                         decoration: customInputDecoration(
-                            hintString: AuthK.emailString),
+                            hintString: AppLocalizations.of(context).email),
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
                           FormBuilderValidators.email(),
@@ -107,7 +109,7 @@ class RegisterScreen extends StatelessWidget {
                       FormBuilderTextField(
                         name: AuthK.passwordString,
                         decoration: customInputDecoration(
-                            hintString: AuthK.passwordHintText),
+                            hintString: AppLocalizations.of(context).password),
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
                         ]),
@@ -137,7 +139,8 @@ class RegisterScreen extends StatelessWidget {
                             child: FormBuilderTextField(
                               name: AuthK.phoneNumberString,
                               decoration: customInputDecoration(
-                                  hintString: AuthK.phoneNumberHintText),
+                                  hintString:
+                                      AppLocalizations.of(context).phone),
                               validator: FormBuilderValidators.compose([
                                 FormBuilderValidators.required(),
                                 FormBuilderValidators.numeric(),
@@ -151,16 +154,14 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(height: screenHight * 0.02),
                       ElevatedButton(
                         onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            print("Valid");
-                          }
+                          if (formKey.currentState!.validate()) {}
                           // if (formKey.currentState!.validate()) {}
                           // email = 'rysiek9801@gmail.com';
                           // BlocProvider.of<AuthenticationBloc>(context).add(
                           //     const EmailSignUpAuthEvent(
                           //         "rysiek9801@gmail.com", "123456"));
                         },
-                        child: const Text("Stwórz konto!"),
+                        child: Text(AppLocalizations.of(context).createAccount),
                       ),
                       SizedBox(height: screenHight * 0.005),
                       TextButtonWithInfo(
@@ -168,7 +169,7 @@ class RegisterScreen extends StatelessWidget {
                           textButtonCallback: () {
                             GoRouter.of(context).go(AppRoute.loginscreen);
                           },
-                          textButtonChild: AuthK.loginString),
+                          textButtonChild: AppLocalizations.of(context).login),
                     ],
                   ),
                 ),

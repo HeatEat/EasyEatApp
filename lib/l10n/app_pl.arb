@@ -7,7 +7,7 @@
     "forgotPassword": "Zapomniałeś hasło?",
     "createAccount": "Stwórz konto!",
     "password": "hasło",
-    "e-mail": "e-mail",
+    "email": "e-mail",
     "name": "imię",
     "lastName": "nazwisko",
     "phone": "numer telefonu",
@@ -16,5 +16,9 @@
     "shoppingCard": "Koszyk",
     "account": "Konto",
     "verificationCode": "Kod weryfikacujny",
-    "verificationMessage": "Wysłaliśmy 6 cyfrowy kod weryfikacyjny na podany adres email"
+    "verificationMessage": "Wysłaliśmy 6 cyfrowy kod weryfikacyjny na podany adres email",
+    "accountExist": "Konto o takim emailu istnieje, zaloguj sie",
+    "somethingWentWrong": "Coś poszło nie tak",
+    "emailNotConfirmed": "Niepotwierdzony email",
+    "wrongVerificationCode": "Niepoprawny kod weryfikacyjny. Spróbuj ponownie."
 }

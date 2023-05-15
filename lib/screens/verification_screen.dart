@@ -9,6 +9,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 // ignore: must_be_immutable
 class VerificationScreen extends StatelessWidget {
   String? email;
@@ -24,7 +26,8 @@ class VerificationScreen extends StatelessWidget {
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is AuthVerifiErrorState) {
-          context.showsnackbar(title: 'Niepoprawny kod, Spróbuj ponownie');
+          context.showsnackbar(
+              title: AppLocalizations.of(context).wrongVerificationCode);
         } else if (state is AuthVerifiSuccessState) {
           GoRouter.of(context).go(AppRoute.homescreen);
         }
@@ -34,16 +37,16 @@ class VerificationScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.fromLTRB(8, screenHight * 0.15, 8, 8),
             child: Column(children: [
-              const Text(
-                VerificationScreenK.verificationCodeString,
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context).verificationCode,
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
                   fontStyle: FontStyle.italic,
                 ),
               ),
-              const Text(
-                VerificationScreenK.verificationMessage,
+              Text(
+                AppLocalizations.of(context).verificationMessage,
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: screenHight * 0.02),

@@ -9,6 +9,8 @@ import '../core/app_router.dart';
 import '../core/constatnts.dart';
 import 'widgets/text_button_with_info_widget.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -22,10 +24,12 @@ class LoginScreen extends StatelessWidget {
         } else if (state is UnAuthenticatedState) {
           GoRouter.of(context).go(AppRoute.loginscreen);
         } else if (state is AuthErrorState) {
-          context.showsnackbar(title: 'Something Went Wrong!');
+          context.showsnackbar(
+              title: AppLocalizations.of(context).somethingWentWrong);
         } else if (state is AuthEmailNotConfirmedState) {
           context.showsnackbar(
-              title: 'Email nie potwierdzony', color: Colors.yellow.shade200);
+              title: AppLocalizations.of(context).emailNotConfirmed,
+              color: Colors.yellow.shade200);
           // TODO: wywołanie sign-up i wyświetlenie ekranu otpVerification
           // dodanie nowego evantu dla nowego ekranu weryfikacyjengo OTP.
         }
@@ -55,14 +59,15 @@ class LoginScreen extends StatelessWidget {
                     ),
                     FormBuilderTextField(
                       name: 'e-mail',
-                      decoration: customInputDecoration(hintString: "e-mail"),
+                      decoration: customInputDecoration(
+                          hintString: AppLocalizations.of(context).email),
                     ),
                     const SizedBox(height: 10),
                     FormBuilderTextField(
                       name: 'password',
-                      decoration: const InputDecoration(
-                        hintText: 'hasło',
-                        border: OutlineInputBorder(
+                      decoration: InputDecoration(
+                        hintText: AppLocalizations.of(context).password,
+                        border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                                 Radius.circular(Ui.borderRadius20))),
                       ),
@@ -87,18 +92,20 @@ class LoginScreen extends StatelessWidget {
                       },
                     ),
                     TextButtonWithInfo(
-                        infoString: AuthK.noAccount,
+                        infoString: AppLocalizations.of(context).noAccount,
                         textButtonCallback: () {
                           GoRouter.of(context).go(AppRoute.registerscreen);
                         },
-                        textButtonChild: AuthK.register),
+                        textButtonChild:
+                            AppLocalizations.of(context).createAccount),
                     TextButtonWithInfo(
-                      infoString: AuthK.forgotPassword,
+                      infoString: AppLocalizations.of(context).forgotPassword,
                       textButtonCallback: () {
                         BlocProvider.of<AuthenticationBloc>(context)
                             .add(const SignOutEvent());
                       },
-                      textButtonChild: AuthK.remindPassword,
+                      textButtonChild:
+                          AppLocalizations.of(context).remindPassowrd,
                     ),
                   ],
                 ),

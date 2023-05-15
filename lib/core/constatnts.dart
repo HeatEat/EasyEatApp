@@ -5,40 +5,16 @@ class K {
 }
 
 class AuthK extends K {
-  static const noAccount = 'Nie posiadasz konta?';
-  static const haveAccount = 'Posiadasz konto?';
-  static const loginString = 'Zaloguj się!';
-  static const register = 'Stwórz Konto';
-  static const remindPassword = 'Przypomnij hasło';
-  static const forgotPassword = 'Zapomniałeś hasło?';
-  static const createAccount = 'Utwórz konto!';
-
   static const passwordString = 'password';
-  static const passwordHintText = 'hasło';
-  static const emailString = 'e-mail';
   static const nameString = 'firstName';
-  static const nameStringHintText = 'imię';
+  static const emailString = 'email';
   static const lastNameString = 'lastName';
-  static const lastNameHintText = 'nazwisko';
   static const phoneNumberString = 'phone';
-  static const phoneNumberHintText = 'numer telefonu';
 }
 
-class HomeScreenK extends K {
-  static const pickUpPlace = 'Miejsce dostawy';
-}
-
-class BottomNavBarK extends K {
-  static const home = "Strona główna";
-  static const shopingCard = "Koszyk";
-  static const account = 'Konto';
-}
+class HomeScreenK extends K {}
 
 class VerificationScreenK extends K {
-  static const verificationCodeString = 'Kod weryfikacyjny';
-  static const verificationMessage =
-      'Wysłaliśmy 6 cyfrowy kod weryfikacyjny na podany adres email';
-
   static const firstDigitInput = 'firstDigit';
   static const secondDigitInput = 'secondDigit';
   static const thirdDigitInput = 'thirdDigit';

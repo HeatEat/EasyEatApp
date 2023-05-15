@@ -13,7 +13,7 @@
     "forgotPassword": "Forgot password?",
     "createAccount": "Create account!",
     "password": "password",
-    "e-mail": "e-mail",
+    "email": "e-mail",
     "name": "First name",
     "lastName": "Last name",
     "phone": "phone number",
@@ -22,5 +22,9 @@
     "shoppingCard": "Shopping card",
     "account": "Account",
     "verificationCode": "Verification code",
-    "verificationMessage": "We send you an email with verification code"
+    "verificationMessage": "We send you an email with verification code",
+    "accountExist": "Account with this email already exists",
+    "somethingWentWrong": "Something went wrong",
+    "emailNotConfirmed": "Email not confirmed",
+    "wrongVerificationCode": "Wrong verification code. Try again."
 }

@@ -1,5 +1,7 @@
 # easy_eat
 
+flutter gen-l10n
+
 A new Flutter project.
 
 ## Getting Started
