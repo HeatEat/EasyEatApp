@@ -1,0 +1,20 @@
+{
+    "helloWorld": "Cześć!",
+    "noAccount": "Nie posiadasz konta?",
+    "haveAccount": "Posiadasz konto?",
+    "login": "Zaloguj się!",
+    "remindPassowrd": "Przypomnij hasło",
+    "forgotPassword": "Zapomniałeś hasło?",
+    "createAccount": "Stwórz konto!",
+    "password": "hasło",
+    "e-mail": "e-mail",
+    "name": "imię",
+    "lastName": "nazwisko",
+    "phone": "numer telefonu",
+    "pickUpPlace": "Miejsce dostawy",
+    "home": "Strona główna",
+    "shoppingCard": "Koszyk",
+    "account": "Konto",
+    "verificationCode": "Kod weryfikacujny",
+    "verificationMessage": "Wysłaliśmy 6 cyfrowy kod weryfikacyjny na podany adres email"
+}

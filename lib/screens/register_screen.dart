@@ -5,10 +5,13 @@ import 'package:easy_eat/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 
 import '../blocs/authentication/authentication_bloc.dart';
 import '../core/app_router.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class RegisterScreen extends StatelessWidget {
@@ -53,6 +56,7 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 SizedBox(height: screenHight * 0.02),
                 FormBuilder(
+                  key: formKey,
                   child: Column(
                     children: [
                       Row(
@@ -65,6 +69,11 @@ class RegisterScreen extends StatelessWidget {
                               name: AuthK.nameString,
                               decoration: customInputDecoration(
                                   hintString: AuthK.nameStringHintText),
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(),
+                              ]),
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
                             ),
                           ),
                           SizedBox(
@@ -74,6 +83,11 @@ class RegisterScreen extends StatelessWidget {
                               name: AuthK.lastNameString,
                               decoration: customInputDecoration(
                                   hintString: AuthK.lastNameHintText),
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(),
+                              ]),
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
                             ),
                           ),
                         ],
@@ -83,12 +97,21 @@ class RegisterScreen extends StatelessWidget {
                         name: AuthK.emailString,
                         decoration: customInputDecoration(
                             hintString: AuthK.emailString),
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(),
+                          FormBuilderValidators.email(),
+                        ]),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                       SizedBox(height: screenHight * 0.02),
                       FormBuilderTextField(
                         name: AuthK.passwordString,
                         decoration: customInputDecoration(
                             hintString: AuthK.passwordHintText),
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(),
+                        ]),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                       SizedBox(height: screenHight * 0.02),
                       Row(
@@ -115,6 +138,12 @@ class RegisterScreen extends StatelessWidget {
                               name: AuthK.phoneNumberString,
                               decoration: customInputDecoration(
                                   hintString: AuthK.phoneNumberHintText),
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(),
+                                FormBuilderValidators.numeric(),
+                              ]),
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
                             ),
                           ),
                         ],
@@ -122,16 +151,20 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(height: screenHight * 0.02),
                       ElevatedButton(
                         onPressed: () {
-                          email = 'rysiek9801@gmail.com';
-                          BlocProvider.of<AuthenticationBloc>(context).add(
-                              const EmailSignUpAuthEvent(
-                                  "rysiek9801@gmail.com", "123456"));
+                          if (formKey.currentState!.validate()) {
+                            print("Valid");
+                          }
+                          // if (formKey.currentState!.validate()) {}
+                          // email = 'rysiek9801@gmail.com';
+                          // BlocProvider.of<AuthenticationBloc>(context).add(
+                          //     const EmailSignUpAuthEvent(
+                          //         "rysiek9801@gmail.com", "123456"));
                         },
                         child: const Text("Stwórz konto!"),
                       ),
                       SizedBox(height: screenHight * 0.005),
                       TextButtonWithInfo(
-                          infoString: AuthK.haveAccount,
+                          infoString: AppLocalizations.of(context).haveAccount,
                           textButtonCallback: () {
                             GoRouter.of(context).go(AppRoute.loginscreen);
                           },
