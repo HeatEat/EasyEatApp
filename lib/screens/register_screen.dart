@@ -24,6 +24,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenHight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
+    CountryCode? countryCode;
 
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
@@ -112,8 +113,33 @@ class RegisterScreen extends StatelessWidget {
                             hintString: AppLocalizations.of(context).password),
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
+                          FormBuilderValidators.minLength(8),
                         ]),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
+                        obscureText: true,
+                      ),
+                      SizedBox(height: screenHight * 0.02),
+                      FormBuilderTextField(
+                        name: AuthK.confirmPasswordString,
+                        decoration: customInputDecoration(
+                            hintString:
+                                AppLocalizations.of(context).confirmPassword),
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(),
+                          FormBuilderValidators.minLength(8),
+                          (val) {
+                            // ignore: unrelated_type_equality_checks
+                            if (formKey.currentState!
+                                    .fields[AuthK.passwordString]!.value !=
+                                val) {
+                              return AppLocalizations.of(context)
+                                  .passwordsDontMach;
+                            }
+                            return null;
+                          }
+                        ]),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        obscureText: true,
                       ),
                       SizedBox(height: screenHight * 0.02),
                       Row(
@@ -121,6 +147,8 @@ class RegisterScreen extends StatelessWidget {
                           Expanded(
                             flex: 1,
                             child: CountryCodePicker(
+                              onChanged: (value) => countryCode = value,
+                              onInit: (value) => countryCode = value,
                               showDropDownButton: true,
                               initialSelection: 'PL',
                               favorite: const ['EN', 'PL'],
@@ -144,6 +172,8 @@ class RegisterScreen extends StatelessWidget {
                               validator: FormBuilderValidators.compose([
                                 FormBuilderValidators.required(),
                                 FormBuilderValidators.numeric(),
+                                FormBuilderValidators.minLength(5),
+                                FormBuilderValidators.maxLength(13),
                               ]),
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
@@ -154,12 +184,25 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(height: screenHight * 0.02),
                       ElevatedButton(
                         onPressed: () {
-                          if (formKey.currentState!.validate()) {}
-                          // if (formKey.currentState!.validate()) {}
-                          // email = 'rysiek9801@gmail.com';
-                          // BlocProvider.of<AuthenticationBloc>(context).add(
-                          //     const EmailSignUpAuthEvent(
-                          //         "rysiek9801@gmail.com", "123456"));
+                          if (formKey.currentState!.validate()) {
+                            email = formKey
+                                .currentState!.fields[AuthK.emailString]!.value;
+                            BlocProvider.of<AuthenticationBloc>(context).add(
+                              EmailSignUpAuthEvent(
+                                name: formKey.currentState!
+                                    .fields[AuthK.nameString]!.value,
+                                lastName: formKey.currentState!
+                                    .fields[AuthK.lastNameString]!.value,
+                                countryCode: '$countryCode',
+                                phone: formKey.currentState!
+                                    .fields[AuthK.phoneNumberString]!.value,
+                                email: formKey.currentState!
+                                    .fields[AuthK.emailString]!.value,
+                                password: formKey.currentState!
+                                    .fields[AuthK.passwordString]!.value,
+                              ),
+                            );
+                          }
                         },
                         child: Text(AppLocalizations.of(context).createAccount),
                       ),

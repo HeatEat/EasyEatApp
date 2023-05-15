@@ -26,5 +26,7 @@
     "accountExist": "Account with this email already exists",
     "somethingWentWrong": "Something went wrong",
     "emailNotConfirmed": "Email not confirmed",
-    "wrongVerificationCode": "Wrong verification code. Try again."
+    "wrongVerificationCode": "Wrong verification code. Try again.",
+    "confirmPassword" : "confirm password",
+    "passwordsDontMach": "Passwords don't match"
 }

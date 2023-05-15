@@ -20,5 +20,7 @@
     "accountExist": "Konto o takim emailu istnieje, zaloguj sie",
     "somethingWentWrong": "Coś poszło nie tak",
     "emailNotConfirmed": "Niepotwierdzony email",
-    "wrongVerificationCode": "Niepoprawny kod weryfikacyjny. Spróbuj ponownie."
+    "wrongVerificationCode": "Niepoprawny kod weryfikacyjny. Spróbuj ponownie.",
+    "confirmPassword" : "potwierdź hasło",
+    "passwordsDontMach": "Hasła nie są identyczne"
 }

@@ -14,6 +14,7 @@ class AuthenticationBloc
     on<EmailSignInAuthEvent>((event, emit) async {
       emit(AuthLoadingState());
       try {
+        //ADD time out if creds are wrong!
         final response = await _authservice.signInWithEmail(
             email: event.email, password: event.password);
 
@@ -32,7 +33,12 @@ class AuthenticationBloc
 
       try {
         final accountState = await _authservice.signUpWithEmail(
-            email: event.email, password: event.password);
+            email: event.email,
+            password: event.password,
+            countryCode: event.countryCode,
+            phone: event.phone,
+            name: event.name,
+            lastName: event.lastName);
         if (accountState == AccountState.createdNotVerify) {
           emit(AuthVerifiState());
         } else if (accountState == AccountState.createdVerify) {

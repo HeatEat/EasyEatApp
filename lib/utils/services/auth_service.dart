@@ -16,8 +16,10 @@ class AuthService {
   Future<SignInState> signInWithEmail(
       {required String email, required String password}) async {
     try {
-      await _auth.signInWithPassword(email: email, password: password);
-      return SignInState.emailNotConfirmed;
+      final res =
+          await _auth.signInWithPassword(email: email, password: password);
+      print(res);
+      return SignInState.success;
     } on AuthException catch (e) {
       if (e.message == 'Email not confirmed') {
         return SignInState.emailNotConfirmed;
@@ -29,14 +31,19 @@ class AuthService {
   }
 
   Future<AccountState> signUpWithEmail(
-      {required String email, required String password}) async {
+      {required String email,
+      required String password,
+      required String name,
+      required String lastName,
+      required String phone,
+      required String countryCode}) async {
     try {
       final response =
           await _auth.signUp(email: email, password: password, data: {
-        'first_name': 'John',
-        'last_name': 'Smith',
-        'phone': '2134',
-        'country_phone': '+48'
+        'first_name': name,
+        'last_name': lastName,
+        'phone': phone,
+        'country_phone': countryCode
       });
       // ignore: unrelated_type_equality_checks
       if (response.session == Null) {

@@ -190,7 +190,7 @@ class VerificationScreen extends StatelessWidget {
                                   BlocProvider.of<AuthenticationBloc>(context)
                                       .add(VerifiAccountEvent(otpCode, email!));
                                 } else {
-                                  print("Ended verify not validate");
+                                  // print("Ended verify not validate");
                                 }
                               }
                               if (value.isEmpty) {
