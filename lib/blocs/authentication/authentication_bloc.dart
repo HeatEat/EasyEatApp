@@ -22,6 +22,10 @@ class AuthenticationBloc
           emit(AuthSuccessState());
         } else if (response == SignInState.emailNotConfirmed) {
           emit(AuthEmailNotConfirmedState());
+        } else if (response == SignInState.invalidCredentials) {
+          emit(AuthInvalidCredentialState());
+        } else {
+          (emit(const AuthErrorState("Sign in problem")));
         }
       } catch (e) {
         emit(AuthErrorState(e.toString()));

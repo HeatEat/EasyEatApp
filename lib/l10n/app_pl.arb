@@ -22,5 +22,6 @@
     "emailNotConfirmed": "Niepotwierdzony email",
     "wrongVerificationCode": "Niepoprawny kod weryfikacyjny. Spróbuj ponownie.",
     "confirmPassword" : "potwierdź hasło",
-    "passwordsDontMach": "Hasła nie są identyczne"
+    "passwordsDontMach": "Hasła nie są identyczne",
+    "invalidCredentials": "Login lub hasło jest niepoprawne"
 }

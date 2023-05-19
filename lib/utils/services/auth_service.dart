@@ -6,7 +6,12 @@ enum AccountState {
   createdVerify,
 }
 
-enum SignInState { success, emailNotConfirmed, otherError }
+enum SignInState {
+  success,
+  emailNotConfirmed,
+  otherError,
+  invalidCredentials,
+}
 
 class AuthService {
   final GoTrueClient _auth = Supabase.instance.client.auth;
@@ -16,13 +21,13 @@ class AuthService {
   Future<SignInState> signInWithEmail(
       {required String email, required String password}) async {
     try {
-      final res =
-          await _auth.signInWithPassword(email: email, password: password);
-      print(res);
+      await _auth.signInWithPassword(email: email, password: password);
       return SignInState.success;
     } on AuthException catch (e) {
       if (e.message == 'Email not confirmed') {
         return SignInState.emailNotConfirmed;
+      } else if (e.message == 'Invalid login credentials') {
+        return SignInState.invalidCredentials;
       }
       return SignInState.otherError;
     } catch (e) {

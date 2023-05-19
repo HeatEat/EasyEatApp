@@ -32,6 +32,10 @@ class LoginScreen extends StatelessWidget {
               color: Colors.yellow.shade200);
           // TODO: wywołanie sign-up i wyświetlenie ekranu otpVerification
           // dodanie nowego evantu dla nowego ekranu weryfikacyjengo OTP.
+        } else if (state is AuthInvalidCredentialState) {
+          context.showsnackbar(
+              title: AppLocalizations.of(context).invalidCredentials,
+              color: Colors.red.shade200);
         }
       },
       child: Scaffold(
@@ -84,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                             onPressed: () {
                               BlocProvider.of<AuthenticationBloc>(context).add(
                                   const EmailSignInAuthEvent(
-                                      "ryszard.schossler@gmail.com",
+                                      "ryszard1.schossler@gmail.com",
                                       "Hasfelder9283"));
                             },
                             child: const Text('Zaloguj'),

@@ -28,5 +28,6 @@
     "emailNotConfirmed": "Email not confirmed",
     "wrongVerificationCode": "Wrong verification code. Try again.",
     "confirmPassword" : "confirm password",
-    "passwordsDontMach": "Passwords don't match"
+    "passwordsDontMach": "Passwords don't match",
+    "invalidCredentials": "Invalid credentials"
 }

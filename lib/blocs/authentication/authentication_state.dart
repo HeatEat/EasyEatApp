@@ -32,3 +32,5 @@ class AuthVerifiSuccessState extends AuthenticationState {}
 class AuthVerifiErrorState extends AuthenticationState {}
 
 class AuthEmailNotConfirmedState extends AuthenticationState {}
+
+class AuthInvalidCredentialState extends AuthenticationState {}
