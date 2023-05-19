@@ -48,7 +48,8 @@ class AuthService {
         'first_name': name,
         'last_name': lastName,
         'phone': phone,
-        'country_phone': countryCode
+        'country_phone': countryCode,
+        'role': 1
       });
       // ignore: unrelated_type_equality_checks
       if (response.session == Null) {
@@ -60,6 +61,7 @@ class AuthService {
         return AccountState.createdNotVerify;
       }
     } catch (e) {
+      print(e.toString());
       throw e.toString();
     }
   }
