@@ -29,7 +29,7 @@ class VerificationScreen extends StatelessWidget {
           context.showsnackbar(
               title: AppLocalizations.of(context).wrongVerificationCode);
         } else if (state is AuthVerifiSuccessState) {
-          GoRouter.of(context).go(AppRoute.homescreen);
+          GoRouter.of(context).go(AppRoute.root);
         }
       },
       child: Scaffold(

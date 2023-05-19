@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is AuthSuccessState) {
-          GoRouter.of(context).go(AppRoute.homescreen);
+          GoRouter.of(context).go(AppRoute.root);
         } else if (state is UnAuthenticatedState) {
           GoRouter.of(context).go(AppRoute.loginscreen);
         } else if (state is AuthErrorState) {

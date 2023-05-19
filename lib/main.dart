@@ -1,3 +1,4 @@
+import 'package:easy_eat/blocs/navigation_bar/cubit/navigation_bar_cubit.dart';
 import 'package:easy_eat/core/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,6 +32,9 @@ void main() async {
   runApp(MultiBlocProvider(providers: [
     BlocProvider<AuthenticationBloc>(
       create: (_) => AuthenticationBloc(),
+    ),
+    BlocProvider<NavigationBarCubit>(
+      create: (_) => NavigationBarCubit(),
     ),
   ], child: const MyApp()));
 }

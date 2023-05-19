@@ -1,4 +1,4 @@
-import 'package:easy_eat/screens/home_screen.dart';
+import 'package:easy_eat/screens/root_screen.dart';
 import 'package:easy_eat/screens/login_screen.dart';
 import 'package:easy_eat/screens/register_screen.dart';
 import 'package:easy_eat/screens/verification_screen.dart';
@@ -20,7 +20,7 @@ class AppRoute {
         path: root,
         builder: (context, state) {
           if (Supabase.instance.client.auth.currentUser != null) {
-            return const HomeScreen();
+            return const RootScreen();
           } else {
             return const LoginScreen();
           }
@@ -35,8 +35,8 @@ class AppRoute {
         builder: (context, state) => RegisterScreen(),
       ),
       GoRoute(
-        path: homescreen,
-        builder: (context, state) => const HomeScreen(),
+        path: root,
+        builder: (context, state) => const RootScreen(),
       ),
       GoRoute(
         path: verificationscreen,
