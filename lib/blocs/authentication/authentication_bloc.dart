@@ -14,7 +14,6 @@ class AuthenticationBloc
     on<EmailSignInAuthEvent>((event, emit) async {
       emit(AuthLoadingState());
       try {
-        //ADD time out if creds are wrong!
         final response = await _authservice.signInWithEmail(
             email: event.email, password: event.password);
 
