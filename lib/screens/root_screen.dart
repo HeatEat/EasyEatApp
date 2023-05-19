@@ -1,5 +1,7 @@
 import 'package:easy_eat/blocs/navigation_bar/cubit/navigation_bar_cubit.dart';
-import 'package:easy_eat/screens/widgets/select_pickup_place_widget.dart';
+import 'package:easy_eat/screens/account_screen.dart';
+import 'package:easy_eat/screens/home_screen.dart';
+import 'package:easy_eat/screens/shopping_card_screen.dart';
 import 'package:easy_eat/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,62 +29,17 @@ class RootScreen extends StatelessWidget {
       },
       child: Scaffold(
         body: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25, 8, 25, 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SelectPickUpPlace(),
-                    TextButton.icon(
-                        onPressed: () {},
-                        icon: const Icon(Icons.search_rounded),
-                        label: const Text("")),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
-                child: SizedBox(
-                  height: 50,
-                  width: double.infinity,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      CategoryItem(
-                        categoryName: "Wszystkie",
-                        selectCategory: () {},
-                      ),
-                      CategoryItem(
-                        categoryName: "Burger",
-                        selectCategory: () {},
-                      ),
-                      CategoryItem(
-                        categoryName: "Pizza",
-                        selectCategory: () {},
-                      ),
-                      CategoryItem(
-                        categoryName: "Włoska",
-                        selectCategory: () {},
-                      ),
-                      CategoryItem(
-                        categoryName: "Hinduska",
-                        selectCategory: () {},
-                      ),
-                      CategoryItem(
-                        categoryName: "Turecka",
-                        selectCategory: () {},
-                      ),
-                      CategoryItem(
-                        categoryName: "Kebab",
-                        selectCategory: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+          child: BlocBuilder<NavigationBarCubit, NavigationBarState>(
+            builder: (context, state) {
+              if (state.navbarItem == NavBarItem.home) {
+                return const HomeScreen();
+              } else if (state.navbarItem == NavBarItem.shoppingCard) {
+                return const ShoppingCardScreen();
+              } else if (state.navbarItem == NavBarItem.account) {
+                return const AccountScreen();
+              }
+              return Container();
+            },
           ),
         ),
         bottomNavigationBar:
@@ -123,35 +80,6 @@ class RootScreen extends StatelessWidget {
           BlocProvider.of<AuthenticationBloc>(context)
               .add(const SignOutEvent());
         }),
-      ),
-    );
-  }
-}
-
-class CategoryItem extends StatelessWidget {
-  const CategoryItem({
-    super.key,
-    required this.categoryName,
-    required this.selectCategory,
-  });
-
-  final String categoryName;
-  final VoidCallback selectCategory;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: selectCategory,
-      child: Row(
-        children: [
-          const SizedBox(width: 8),
-          Card(
-            color: Theme.of(context).highlightColor,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(categoryName),
-            ),
-          ),
-        ],
       ),
     );
   }
