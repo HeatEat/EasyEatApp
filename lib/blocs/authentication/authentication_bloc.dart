@@ -48,7 +48,6 @@ class AuthenticationBloc
           emit(AuthAccountExistState());
         }
       } catch (e) {
-        print(e.toString());
         emit(AuthErrorState(e.toString()));
       }
     });

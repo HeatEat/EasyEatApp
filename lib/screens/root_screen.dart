@@ -76,10 +76,6 @@ class RootScreen extends StatelessWidget {
             );
           },
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          BlocProvider.of<AuthenticationBloc>(context)
-              .add(const SignOutEvent());
-        }),
       ),
     );
   }
