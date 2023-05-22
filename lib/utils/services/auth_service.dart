@@ -11,6 +11,7 @@ enum SignInState {
   emailNotConfirmed,
   otherError,
   invalidCredentials,
+  unauthorize
 }
 
 class AuthService {
@@ -22,7 +23,11 @@ class AuthService {
       {required String email, required String password}) async {
     try {
       await _auth.signInWithPassword(email: email, password: password);
-      return SignInState.success;
+      if (_auth.currentUser?.userMetadata!["role"] == 1) {
+        return SignInState.success;
+      } else {
+        return SignInState.unauthorize;
+      }
     } on AuthException catch (e) {
       if (e.message == 'Email not confirmed') {
         return SignInState.emailNotConfirmed;
@@ -51,6 +56,15 @@ class AuthService {
         'country_phone': countryCode,
         'role': 1
       });
+      // final response = await _auth.signUp(
+      //     email: email,
+      //     password: password,
+      //     data: {
+      //       'restaurant_name': 'Dara',
+      //       'phone': '123453',
+      //       'country_phone': '+48',
+      //       'role': 4
+      //     });
       // ignore: unrelated_type_equality_checks
       if (response.session == Null) {
         debugPrint("session is null");
@@ -61,6 +75,7 @@ class AuthService {
         return AccountState.createdNotVerify;
       }
     } catch (e) {
+      print(e.toString());
       throw e.toString();
     }
   }
