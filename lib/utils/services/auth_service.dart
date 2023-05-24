@@ -75,7 +75,6 @@ class AuthService {
         return AccountState.createdNotVerify;
       }
     } catch (e) {
-      print(e.toString());
       throw e.toString();
     }
   }
