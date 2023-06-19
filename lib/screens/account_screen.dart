@@ -1,5 +1,7 @@
+import 'package:easy_eat/core/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../blocs/authentication/authentication_bloc.dart';
 
@@ -26,7 +28,9 @@ class AccountScreen extends StatelessWidget {
           SizedBox(height: screenHight * 0.02),
           ListTile(
             title: const Text("Zamówienia"),
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).push(AppRoute.userordersscreen);
+            },
             tileColor: Theme.of(context).colorScheme.onInverseSurface,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

@@ -1,6 +1,7 @@
 import 'package:easy_eat/screens/root_screen.dart';
 import 'package:easy_eat/screens/login_screen.dart';
 import 'package:easy_eat/screens/register_screen.dart';
+import 'package:easy_eat/screens/user_orders_screen.dart';
 import 'package:easy_eat/screens/verification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,7 @@ class AppRoute {
   static const registerscreen = '/registerscreen';
   static const homescreen = '/homescreen';
   static const verificationscreen = '/verificationscreen';
+  static const userordersscreen = '/userordersscreen';
 
   static final GoRouter _router = GoRouter(
     routes: <GoRoute>[
@@ -47,6 +49,9 @@ class AppRoute {
           );
         },
       ),
+      GoRoute(
+          path: userordersscreen,
+          builder: (context, state) => const UserOrdersScreen())
     ],
     initialLocation: root,
     errorBuilder: (context, state) => const Center(

@@ -17,7 +17,9 @@ class CategoryItem extends StatelessWidget {
         children: [
           const SizedBox(width: 8),
           Card(
-            color: Theme.of(context).highlightColor,
+            color: true
+                ? Theme.of(context).colorScheme.primaryContainer
+                : Theme.of(context).colorScheme.background,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(categoryName),
