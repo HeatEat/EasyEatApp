@@ -1,5 +1,8 @@
+import 'package:easy_eat/blocs/categories/categories_bloc.dart';
 import 'package:easy_eat/blocs/navigation_bar/cubit/navigation_bar_cubit.dart';
 import 'package:easy_eat/core/themes/app_theme.dart';
+import 'package:easy_eat/data/data_sources/supabase_data_source.dart';
+import 'package:easy_eat/data/repositories/easy_eat_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -35,6 +38,10 @@ void main() async {
     ),
     BlocProvider<NavigationBarCubit>(
       create: (_) => NavigationBarCubit(),
+    ),
+    BlocProvider<CategoriesBloc>(
+      create: (_) =>
+          CategoriesBloc(EasyEatRepositoryImpl(SupabaseDataSourceImp())),
     ),
   ], child: const MyApp()));
 }
