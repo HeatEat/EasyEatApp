@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 part 'navigation_bar_state.dart';
 
 class NavigationBarCubit extends Cubit<NavigationBarState> {
-  NavigationBarCubit() : super(const NavigationBarInitial(NavBarItem.home, 0));
+  NavigationBarCubit() : super(const NavigationBarHome(NavBarItem.home, 0));
 
   void getNavBarItem(NavBarItem navBarItem) {
     switch (navBarItem) {
