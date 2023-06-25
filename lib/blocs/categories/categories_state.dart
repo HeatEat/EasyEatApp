@@ -22,4 +22,9 @@ abstract class CategoriesState extends Equatable {
 
 class CategoriesInitial extends CategoriesState {}
 
-class CategoriesSelect extends CategoriesState {}
+class CategoriesSelect extends CategoriesState {
+  @override
+  final List<CategoryModel> categories;
+
+  const CategoriesSelect(this.categories) : super(categories: categories);
+}

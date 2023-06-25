@@ -31,39 +31,51 @@ class HomeScreen extends StatelessWidget {
           child: SizedBox(
             height: 50,
             width: double.infinity,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                CategoryItem(
-                  categoryName: "Wszystkie",
-                  selectCategory: () {},
-                ),
-                CategoryItem(
-                  categoryName: "Burger",
-                  selectCategory: () {},
-                ),
-                CategoryItem(
-                  categoryName: "Pizza",
-                  selectCategory: () {},
-                ),
-                CategoryItem(
-                  categoryName: "Włoska",
-                  selectCategory: () {},
-                ),
-                CategoryItem(
-                  categoryName: "Hinduska",
-                  selectCategory: () {},
-                ),
-                CategoryItem(
-                  categoryName: "Turecka",
-                  selectCategory: () {},
-                ),
-                CategoryItem(
-                  categoryName: "Kebab",
-                  selectCategory: () {},
-                ),
-              ],
+            child: BlocBuilder<CategoriesBloc, CategoriesState>(
+              builder: (context, state) {
+                return ListView.builder(
+                    itemCount: state.categories.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => CategoryItem(
+                          categoryName: state.categories[index].name,
+                          selectCategory: () {},
+                          isSelected: state.categories[index].selected,
+                        ));
+              },
             ),
+            // child: ListView(
+            //   scrollDirection: Axis.horizontal,
+            //   children: [
+            //     CategoryItem(
+            //       categoryName: "Wszystkie",
+            //       selectCategory: () {},
+            //     ),
+            //     CategoryItem(
+            //       categoryName: "Burger",
+            //       selectCategory: () {},
+            //     ),
+            //     CategoryItem(
+            //       categoryName: "Pizza",
+            //       selectCategory: () {},
+            //     ),
+            //     CategoryItem(
+            //       categoryName: "Włoska",
+            //       selectCategory: () {},
+            //     ),
+            //     CategoryItem(
+            //       categoryName: "Hinduska",
+            //       selectCategory: () {},
+            //     ),
+            //     CategoryItem(
+            //       categoryName: "Turecka",
+            //       selectCategory: () {},
+            //     ),
+            //     CategoryItem(
+            //       categoryName: "Kebab",
+            //       selectCategory: () {},
+            //     ),
+            //   ],
+            // ),
           ),
         ),
         BlocBuilder<CategoriesBloc, CategoriesState>(builder: (context, state) {

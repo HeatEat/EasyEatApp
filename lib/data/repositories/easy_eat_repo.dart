@@ -1,8 +1,9 @@
 import 'package:easy_eat/data/data_sources/supabase_data_source.dart';
+import 'package:easy_eat/data/models/category_model.dart';
 
 abstract class EasyEatRepository {
   Future<List> getUserOrders();
-  Future getCategories();
+  Future<List<CategoryModel>> getCategories();
 }
 
 class EasyEatRepositoryImpl implements EasyEatRepository {
@@ -11,13 +12,13 @@ class EasyEatRepositoryImpl implements EasyEatRepository {
   EasyEatRepositoryImpl(this.supabaseDataSource);
 
   @override
-  Future getCategories() async {
+  Future<List<CategoryModel>> getCategories() async {
     try {
-      final categoires = await supabaseDataSource.getCategories();
+      final categories = await supabaseDataSource.getCategories();
 
-      return categoires;
+      return categories;
     } catch (e) {
-      print(e.toString());
+      rethrow;
     }
   }
 

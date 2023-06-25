@@ -5,8 +5,10 @@ class CategoryItem extends StatelessWidget {
     super.key,
     required this.categoryName,
     required this.selectCategory,
+    required this.isSelected,
   });
 
+  final bool isSelected;
   final String categoryName;
   final VoidCallback selectCategory;
   @override
@@ -17,7 +19,7 @@ class CategoryItem extends StatelessWidget {
         children: [
           const SizedBox(width: 8),
           Card(
-            color: true
+            color: isSelected
                 ? Theme.of(context).colorScheme.primaryContainer
                 : Theme.of(context).colorScheme.background,
             child: Padding(

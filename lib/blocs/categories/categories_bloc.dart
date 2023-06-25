@@ -8,10 +8,22 @@ part 'categories_state.dart';
 
 class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
   final EasyEatRepository _repo;
-  List<CategoryModel>? categories;
+  late List<CategoryModel> categories;
+  CategoryModel? selectedCategory;
   CategoriesBloc(this._repo) : super(CategoriesInitial()) {
-    on<LoadCategoriesEvent>((event, emit) {
-      final categories = _repo.getCategories();
+    on<LoadCategoriesEvent>((event, emit) async {
+      categories = await _repo.getCategories();
+
+      categories[
+              categories.indexWhere((element) => element.name == "Wszystkie")]
+          .selected = true;
+
+      var allCategory =
+          categories.firstWhere((element) => element.name == "Wszystkie");
+      selectedCategory = allCategory;
+      selectedCategory!.selected = true;
+
+      emit(CategoriesSelect(categories));
     });
   }
 }
