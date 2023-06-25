@@ -8,3 +8,9 @@ abstract class CategoriesEvent extends Equatable {
 }
 
 class LoadCategoriesEvent extends CategoriesEvent {}
+
+class ChangeCategoryEvent extends CategoriesEvent {
+  final int categoryId;
+
+  const ChangeCategoryEvent(this.categoryId);
+}

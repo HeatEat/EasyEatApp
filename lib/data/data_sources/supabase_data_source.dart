@@ -6,7 +6,6 @@ abstract class SupabaseDataSource {
 }
 
 class SupabaseDataSourceImp implements SupabaseDataSource {
-  final GoTrueClient _auth = Supabase.instance.client.auth;
   final supabase = Supabase.instance.client;
 
   @override

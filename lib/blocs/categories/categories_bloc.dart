@@ -10,7 +10,7 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
   final EasyEatRepository _repo;
   late List<CategoryModel> categories;
   CategoryModel? selectedCategory;
-  CategoriesBloc(this._repo) : super(CategoriesInitial()) {
+  CategoriesBloc(this._repo) : super(const SelectedCategoryState([])) {
     on<LoadCategoriesEvent>((event, emit) async {
       categories = await _repo.getCategories();
 
@@ -23,7 +23,25 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       selectedCategory = allCategory;
       selectedCategory!.selected = true;
 
-      emit(CategoriesSelect(categories));
+      emit(SelectedCategoryState(categories));
+    });
+
+    on<ChangeCategoryEvent>((event, emit) {
+      emit(LoadingCategoryState());
+      var oldSelected =
+          categories.indexWhere((element) => element.selected == true);
+      var newSelected =
+          categories.indexWhere((element) => element.id == event.categoryId);
+
+      if (oldSelected != newSelected) {
+        categories[oldSelected].selected = false;
+        categories[newSelected].selected = true;
+        selectedCategory = categories[newSelected];
+
+        emit(SelectedCategoryState(categories));
+      } else {
+        emit(SelectedCategoryState(categories));
+      }
     });
   }
 }

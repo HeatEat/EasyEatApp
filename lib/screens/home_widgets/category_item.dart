@@ -1,4 +1,6 @@
+import 'package:easy_eat/blocs/categories/categories_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({
@@ -6,15 +8,20 @@ class CategoryItem extends StatelessWidget {
     required this.categoryName,
     required this.selectCategory,
     required this.isSelected,
+    required this.categoryId,
   });
 
+  final int categoryId;
   final bool isSelected;
   final String categoryName;
   final VoidCallback selectCategory;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: selectCategory,
+      onTap: () {
+        BlocProvider.of<CategoriesBloc>(context)
+            .add(ChangeCategoryEvent(categoryId));
+      },
       child: Row(
         children: [
           const SizedBox(width: 8),

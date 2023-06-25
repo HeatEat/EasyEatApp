@@ -33,14 +33,18 @@ class HomeScreen extends StatelessWidget {
             width: double.infinity,
             child: BlocBuilder<CategoriesBloc, CategoriesState>(
               builder: (context, state) {
-                return ListView.builder(
-                    itemCount: state.categories.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => CategoryItem(
-                          categoryName: state.categories[index].name,
-                          selectCategory: () {},
-                          isSelected: state.categories[index].selected,
-                        ));
+                if (state is SelectedCategoryState) {
+                  return ListView.builder(
+                      itemCount: state.categories.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => CategoryItem(
+                            categoryName: state.categories[index].name,
+                            selectCategory: () {},
+                            isSelected: state.categories[index].selected,
+                            categoryId: state.categories[index].id,
+                          ));
+                }
+                return Container();
               },
             ),
             // child: ListView(
