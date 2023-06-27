@@ -8,7 +8,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 
-import '../blocs/authentication/authentication_bloc.dart';
+import '../bloc/authentication/authentication_bloc.dart';
 import '../core/app_router.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

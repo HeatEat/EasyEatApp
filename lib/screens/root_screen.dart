@@ -1,4 +1,3 @@
-import 'package:easy_eat/blocs/navigation_bar/cubit/navigation_bar_cubit.dart';
 import 'package:easy_eat/screens/account_screen.dart';
 import 'package:easy_eat/screens/home_screen.dart';
 import 'package:easy_eat/screens/shopping_card_screen.dart';
@@ -7,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../blocs/authentication/authentication_bloc.dart';
+import '../bloc/authentication/authentication_bloc.dart';
+import '../bloc/navigation_bar/cubit/navigation_bar_cubit.dart';
 import '../core/app_router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

@@ -1,4 +1,3 @@
-import 'package:easy_eat/blocs/authentication/authentication_bloc.dart';
 import 'package:easy_eat/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 
+import '../bloc/authentication/authentication_bloc.dart';
 import '../core/app_router.dart';
 import '../core/constatnts.dart';
 import 'widgets/text_button_with_info_widget.dart';

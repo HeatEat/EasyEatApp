@@ -1,8 +1,9 @@
-import 'package:easy_eat/blocs/categories/categories_bloc.dart';
 import 'package:easy_eat/screens/home_widgets/category_item.dart';
 import 'package:easy_eat/screens/widgets/select_pickup_place_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/categories/categories_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({

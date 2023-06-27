@@ -1,6 +1,7 @@
-import 'package:easy_eat/blocs/categories/categories_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../bloc/categories/categories_bloc.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({

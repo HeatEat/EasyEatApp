@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../blocs/authentication/authentication_bloc.dart';
+import '../bloc/authentication/authentication_bloc.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});

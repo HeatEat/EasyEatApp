@@ -1,5 +1,5 @@
-import 'package:easy_eat/blocs/categories/categories_bloc.dart';
-import 'package:easy_eat/blocs/navigation_bar/cubit/navigation_bar_cubit.dart';
+import 'package:easy_eat/bloc/categories/categories_bloc.dart';
+import 'package:easy_eat/bloc/navigation_bar/cubit/navigation_bar_cubit.dart';
 import 'package:easy_eat/core/themes/app_theme.dart';
 import 'package:easy_eat/data/data_sources/supabase_data_source.dart';
 import 'package:easy_eat/data/repositories/easy_eat_repo.dart';
@@ -10,7 +10,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'bloc_observer.dart';
-import 'blocs/authentication/authentication_bloc.dart';
+import 'bloc/authentication/authentication_bloc.dart';
 import 'core/app_router.dart';
 import 'core/constatnts.dart';
 

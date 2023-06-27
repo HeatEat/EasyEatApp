@@ -1,4 +1,4 @@
-import 'package:easy_eat/blocs/authentication/authentication_bloc.dart';
+import 'package:easy_eat/bloc/authentication/authentication_bloc.dart';
 import 'package:easy_eat/core/app_router.dart';
 import 'package:easy_eat/core/constatnts.dart';
 import 'package:easy_eat/utils/extensions/extensions.dart';
