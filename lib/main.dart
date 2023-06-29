@@ -5,6 +5,7 @@ import 'package:easy_eat/data/data_sources/supabase_data_source.dart';
 import 'package:easy_eat/data/repositories/easy_eat_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -17,11 +18,10 @@ import 'core/constatnts.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // TODO: zapisanie zmiennych do pamięci telefonu
+  await dotenv.load(fileName: '.env');
 
-  String supabaseBaseUrl = 'https://fdfztjjxeyumwufcsnno.supabase.co';
-  String supabaseBaseKey =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZkZnp0amp4ZXl1bXd1ZmNzbm5vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODA4MDIzMjksImV4cCI6MTk5NjM3ODMyOX0.L5ZBBAPrld-UCxYwFYhBSxz8PLealrfRlRvoak_iyJU';
+  String supabaseBaseUrl = dotenv.env['SUPABASE_BASE_URL'] ?? '';
+  String supabaseBaseKey = dotenv.env['SUPABASE_BASE_KEY'] ?? '';
 
   // This will help you observe your Bloc
   Bloc.observer = MyBlocObserver();
